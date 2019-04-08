@@ -10,3 +10,5 @@ professions = Profession.create([
    {name: "Warrior"}
 ])
 
+
+
