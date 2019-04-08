@@ -1,6 +1,3 @@
+Sinatra Project for Flatiron School
 
-git init
-git add .
-git commit -m "first commit"
-git remote add origin https://github.com/BebopVinh/sinatra-hearthstone-registration.git
-git push -u origin master
+This is a mock-up of a Hearthstone Tournament Registration website for Players
