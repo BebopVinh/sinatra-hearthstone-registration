@@ -1,14 +1,12 @@
 require './config/environment'
-# require 'sinatra'
-# require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
-
+  
   configure do
     set :public_folder, 'public'
     set :views, proc { File.join(root, '../views/') }
     enable :sessions
-    # register Sinatra::Flash
+    set :session_secret, HASHKEY
   end
 
   get "/" do
@@ -40,7 +38,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      if !!sesion[:user_id]
+      if !!session[:user_id]
         return
       else
         redirect '/login'

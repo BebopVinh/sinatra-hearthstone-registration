@@ -1,4 +1,5 @@
 ENV['SINATRA_ENV'] ||= "development"
+HASHKEY = "SxhIwuD2tO792nk2SAF2sp4r7WRYpxqP"
 
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
