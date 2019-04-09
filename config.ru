@@ -6,5 +6,6 @@ end
 
 use Rack::MethodOverride
 
-
+use PlayersController
+use DecksController
 run ApplicationController
