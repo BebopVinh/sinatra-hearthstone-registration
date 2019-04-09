@@ -1,0 +1,9 @@
+<h1>All decks</h1>
+<h3><a href="/players/"></a></h3>
+<% Deck.all.each do |deck| %>
+   <li>
+      <a href="/decks/<%=deck.id%>">
+      <%= deck.name + " #{deck.profession.name}" + " (#{deck.archetype})"%>
+      </a>
+   </li><br>
+<% end %>

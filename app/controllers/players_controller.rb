@@ -6,5 +6,9 @@ class PlayersController < ApplicationController
    post '/players' do
       binding.pry
    end
+
+   get '/players/decks' do
+      erb :'/players/decks'
+   end
    
 end

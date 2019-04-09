@@ -1,11 +1,14 @@
 require './config/environment'
+# require 'sinatra'
+# require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
-    set :views, 'app/views'
+    set :views, proc { File.join(root, '../views/') }
     enable :sessions
+    # register Sinatra::Flash
   end
 
   get "/" do
@@ -17,9 +20,19 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    binding.pry
+    player = Player.find_by(username: params[:username])
+    if player && player.authenticate(params[:password])
+      session[:user_id] = player.id
+      redirect '/decks/index'
+    else
+      redirect '/login'
+    end
   end
 
+  post '/logout' do
+    redirect '/logout'
+  end
+  
   get '/logout'  do
     session.clear
     redirect '/login'
