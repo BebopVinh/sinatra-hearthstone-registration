@@ -61,12 +61,18 @@ class DecksController < ApplicationController
    patch '/decks/:id' do
       @deck = Deck.find(params[:id])
 
-      if params[:deck].values.include?("" || nil)
+      # if params[:deck].values.include?("" || nil)
+      #    redirect back
+      # else
+      binding.pry
+      if !(params[:deck][:profession_id]) || params[:deck].values.include?("")
          redirect back
       else
+         params[:deck][:profession_id] = params[:deck][:profession_id].to_i
          @deck.update(params[:deck])
          @deck.code = params[:code] unless params[:code].empty?
          @deck.save
+         binding.pry
          redirect "/players/#{@deck.creator.slug}/decks"
       end
    end
