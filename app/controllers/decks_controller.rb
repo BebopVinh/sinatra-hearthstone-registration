@@ -14,7 +14,7 @@ class DecksController < ApplicationController
    end
 
    post '/decks' do
-      if !params[:deck][:profession_id] ||
+      if !params[:deck][:profession_id]
          params[:deck][:profession_id] = params[:deck][:profession_id].to_i
       else
          redirect back
