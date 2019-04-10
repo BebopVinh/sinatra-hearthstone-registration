@@ -1,9 +1,9 @@
 <% if session[:user_id] %>
-    <h2><a href="/players/<%=session[:user_id]%>"></a></h2>
+    <h2><a href="/players/<%=@player.slug%>/decks">My Decks</a></h2>
 <% end %>
 
+<!--
 <h3>All decks</h3>
-<h3><a href="/players/"></a></h3>
 <% Deck.all.each do |deck| %>
    <li>
       <span>
@@ -13,10 +13,12 @@
       created by:
       <a href="/players/<%=deck.creator.slug%>/decks">
       <%= deck.creator.username %>
-      </a>
+ %%>     </a>
       </span>
       </li><br>
 <% end %>
+
+-->
 
 
 <br>

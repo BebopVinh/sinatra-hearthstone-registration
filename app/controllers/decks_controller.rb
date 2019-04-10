@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
    get '/decks/index' do
+      @player = Player.find(session[:user_id]) if !!session[:user_id]
       erb :'/decks/index'
    end
 
@@ -41,6 +42,19 @@ class DecksController < ApplicationController
       logged_in?
       @deck = Deck.find(params[:id])
       erb :'/decks/edit'
+   end
+
+   post '/decks/:id/add' do
+      logged_in?
+      redirect "/decks/#{params[:id]}/add"
+   end
+
+   get '/decks/:id/add' do
+      logged_in?
+      @deck = Deck.find(params[:id])
+      @player = Player.find(session[:user_id])
+      @player.decks << @deck
+      redirect "/decks/#{params[:id]}"
    end
 
    patch '/decks/:id' do
