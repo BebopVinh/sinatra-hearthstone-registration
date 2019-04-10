@@ -2,28 +2,36 @@
 
 <br>
 <h3>Decks by <%= @player.username %>:</h3>
-<% @created_decks.each do |deck| %>
-      <li>
-      <a href="/decks/<%=deck.id%>">
-         <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
-      </a>
-   </li>
+<% unless @created_decks.empty? %>
+   <% @created_decks.each do |deck| %>
+         <li>
+         <a href="/decks/<%=deck.id%>">
+            <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
+         </a>
+      </li>
+   <% end %>
+<% else %>
+   <p>Has not created any decks.</p>
 <% end %>
 
 <br>
 <h3>Other decks from collection:</h3>
-<% @other_decks.each do |deck| %>
-   <li>
-      <span>
-      <a href="/decks/<%=deck.id%>">
-         <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
-      </a>
-      created by:
-      <a href="/players/<%=deck.creator.slug%>/decks">
-      <%= deck.creator.username %>
-      </a>
-      </span>
-   </li>
+<% unless @other_decks.empty? %>
+   <% @other_decks.each do |deck| %>
+      <li>
+         <span>
+         <a href="/decks/<%=deck.id%>">
+            <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
+         </a>
+         created by:
+         <a href="/players/<%=deck.creator.slug%>/decks">
+         <%= deck.creator.username %>
+         </a>
+         </span>
+      </li>
+   <% end %>
+<% else %>
+   <p>Has no other decks in collection</p>
 <% end %>
 
 <br>
@@ -33,7 +41,7 @@
 
 <br>
 <br>
-<form action="/players/<%=@player.id%>" method="post">
+<form action="/players/<%=@player.slug%>/delete" method="post">
    <input type="hidden" id="hidden" value="delete" name="_method">
    <input type="submit" value="Delete Account">
 </form>

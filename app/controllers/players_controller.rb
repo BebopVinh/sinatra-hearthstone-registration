@@ -21,11 +21,17 @@ class PlayersController < ApplicationController
       end
       @created_decks = Deck.where(creator_id: @player.id)
       if @player.decks.empty?
-         @other_decks = @player.decks
+         erb :'/players/empty'
       else
-         @other_decks = @player.decks.delete_if {|deck| deck.creator_id == @player.id}
+         @other_decks = @player.decks - @created_decks
       end
-      erb :'/players/decks'
+   end
+
+   delete '/players/:slug/delete' do
+      logged_in?
+      @player = Player.find_by_slug(params[:slug])
+      Player.destroy(@player.id)
+      redirect '/'
    end
    
 end

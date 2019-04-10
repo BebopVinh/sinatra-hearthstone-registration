@@ -14,22 +14,17 @@ class DecksController < ApplicationController
    end
 
    post '/decks' do
-      if !params[:deck][:profession_id]
+      if !(params[:deck][:profession_id]) || params[:deck].values.include?("")
+         redirect back
+      else
          params[:deck][:profession_id] = params[:deck][:profession_id].to_i
-      else
-         redirect back
-      end
-
-      params[:deck][:creator_id] = params[:deck][:creator_id].to_i
-
-      unless params[:deck].values.include?("")
+         params[:deck][:creator_id] = params[:deck][:creator_id].to_i
          @deck = Deck.new(params[:deck])
-      else
-         redirect back
       end
-      
       @deck.code = params[:code] unless params[:code].empty?
       @deck.save
+      @player = Player.find(session[:user_id])
+      @player.decks << @deck
       redirect '/decks/index'
    end
 
@@ -54,7 +49,6 @@ class DecksController < ApplicationController
       if params[:deck].values.include?("" || nil)
          redirect back
       else
-         binding.pry
          @deck.update(params[:deck])
          @deck.code = params[:code] unless params[:code].empty?
          @deck.save

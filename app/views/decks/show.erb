@@ -1,5 +1,12 @@
 <h1><%= @deck.name + " " + @deck.profession.name %></h1>
 
+<% if !!session[:user_id] %>
+   <% @player = Player.find(session[:user_id]) %>
+   <form action="/players/<%=@player.slug%>/add" method="post">
+      <input type="submit" value="Add to Collection">
+   </form>
+<% end %>
+
 <br>
 <p><b>Class: </b><%= @deck.profession.name %></p>
 
