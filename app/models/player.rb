@@ -13,4 +13,12 @@ class Player < ActiveRecord::Base
    validates :password, confirmation: true
    validates :password_confirmation, presence: true
    validates :username, uniqueness: true
+
+   def slug
+      username.downcase.gsub(/[^0-9a-z\- ]/, "").gsub(' ', '-')
+   end
+
+   def self.find_by_slug(slug)
+      self.all.find {|user| user.slug == slug}
+   end
 end
