@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <h1>Hearthstone Tournament Registration</h1>
+
+    <div style="float:right">
+      <% if !!session[:user_id] %>
+      <form align="right" name="logout" method="post" action="/logout">
+        <label class="logoutButton">
+        <input name="logout" type="submit" id="logout" value="Log Out">
+        </label>
+      </form>
+      <% end %>
+    </div>
+
     <div class="wrapper">
 
         <%= yield %>

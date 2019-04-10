@@ -1,0 +1,27 @@
+<h1>Edit <%= @deck.name + " " + @deck.profession.name %></h1>
+
+<form action="/decks/<%=@deck.id%>" method="post">
+   <input type="hidden" id="hidden" value="patch" name="_method">
+
+   <label for="deck[name]">Name:
+   <input type="text" name="deck[name]" value="<%=@deck.name%>">
+   </label><br>
+   
+   <label for="deck[profession]">Class:</label>
+   <select name="deck[profession]" id="deck[profession]">
+      <option value="" selected disabled hidden>Choose a Class</option>
+      <% Profession.all.each do |prof| %>
+         <option value="<%=prof.id%>"><%= prof.name %></option>
+      <% end %>
+   </select>
+
+   <br>
+   <label for="deck[name]">Archetype:</label>
+   <input type="text" name="deck[archetype]" value="<%=@deck.archetype%>"><br>
+
+   <label for="
+   code">Import Code:</label>
+   <input type="text" name="code" value="<%=@deck.code%>"><br>
+
+   <input type="submit" value="Submit">
+</form>

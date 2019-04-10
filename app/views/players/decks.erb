@@ -1,0 +1,31 @@
+<h1><%= @player.username %> Decks Collection</h1>
+
+<br>
+<h3>Decks by <%= @player.username %>:</h3>
+<% @created_decks.each do |deck| %>
+      <li>
+      <a href="/decks/<%=deck.id%>">
+         <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
+      </a>
+   </li>
+<% end %>
+
+<br>
+<h3>Other decks from collection:</h3>
+<% @other_decks.each do |deck| %>
+   <li>
+      <span>
+      <a href="/decks/<%=deck.id%>">
+         <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
+      </a>
+      created by:
+      <a href="/players/<%=deck.creator.slug%>/decks">
+      <%= deck.creator.username %>
+      </a>
+      </span>
+   </li>
+<% end %>
+
+
+
+
