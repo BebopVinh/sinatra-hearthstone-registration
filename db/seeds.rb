@@ -11,9 +11,9 @@ professions = Profession.create([
 ])
 
 sample_decks = Deck.create([
-   {name: "Deathrattle", archetype: "Midrange", profession_id: 6},
-   {name: "Odd", archetype: "Aggro", profession_id: 6},
-   {name: "Ressurect", archetype: "Combo", profession_id: 5}
+   {name: "Deathrattle", archetype: "Midrange", profession_id: 6, creator_id: 1},
+   {name: "Odd", archetype: "Aggro", profession_id: 6, creator_id: 1},
+   {name: "Ressurect", archetype: "Combo", profession_id: 5, creator_id: 1}
 ])
 
 countries = Country.create([
@@ -23,9 +23,12 @@ countries = Country.create([
 ])
 
 players = Player.create([
-   {name: "Luo Shengyuan", username: "roger", email: "roger@ahq.com", password: "hearthstone", country_id: 3,},
-   {name: "Raphael Peltzer", username: "bunnyhoppor", email: "bunnyhoppor@samsung.com", password: "hearthstone", country_id: 1},
-   {name: "Kim Jung-soo", username: "surrender", email: "surrender@sk.com", password: "hearthstone", country_id: 2}
+   {username: "roger", email: "roger@ahq.com", password: "hearthstone",
+      email_confirmation: "roger@ahq.com", password_confirmation: "hearthstone", country_id: 3,},
+   {username: "bunnyhoppor", email: "bunnyhoppor@samsung.com", password: "hearthstone", 
+      email_confirmation: "bunnyhoppor@samsung.com", password_confirmation: "hearthstone", country_id: 1},
+   {username: "surrender", email: "surrender@sk.com", password: "hearthstone", 
+      email_confirmation: "surrender@sk.com", password_confirmation: "hearthstone", country_id: 2}
 ])
 
 

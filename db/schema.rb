@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190408171458) do
+ActiveRecord::Schema.define(version: 20190410000636) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 20190408171458) do
   create_table "decks", force: :cascade do |t|
     t.string  "name"
     t.string  "archetype"
+    t.integer "creator_id"
     t.integer "profession_id"
+    t.string  "code"
   end
 
   create_table "player_decks", force: :cascade do |t|
@@ -29,7 +31,6 @@ ActiveRecord::Schema.define(version: 20190408171458) do
   end
 
   create_table "players", force: :cascade do |t|
-    t.string  "name"
     t.integer "country_id"
     t.string  "username"
     t.string  "email"
