@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
    #validation for uniqueness
    validates :email, confirmation: { case_sensitive: false }, uniqueness: true
    validates :email_confirmation, presence: true
-   validates :password, confirmation: true
+   validates :password, confirmation: {case_sensitive: true}
    validates :password_confirmation, presence: true
    validates :username, uniqueness: true
 

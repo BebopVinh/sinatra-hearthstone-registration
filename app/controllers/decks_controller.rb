@@ -64,7 +64,6 @@ class DecksController < ApplicationController
       # if params[:deck].values.include?("" || nil)
       #    redirect back
       # else
-      binding.pry
       if !(params[:deck][:profession_id]) || params[:deck].values.include?("")
          redirect back
       else
@@ -72,7 +71,6 @@ class DecksController < ApplicationController
          @deck.update(params[:deck])
          @deck.code = params[:code] unless params[:code].empty?
          @deck.save
-         binding.pry
          redirect "/players/#{@deck.creator.slug}/decks"
       end
    end
@@ -80,7 +78,8 @@ class DecksController < ApplicationController
    delete '/decks/:id/delete' do
       logged_in?
       @deck = Deck.find(params[:id])
-      Deck.destroy(params[:id]) if @deck.id == session[:user_id]
+      Deck.destroy(params[:id]) if @deck.creator.id == session[:user_id]
+      binding.pry
       redirect '/decks/index'
    end
 end

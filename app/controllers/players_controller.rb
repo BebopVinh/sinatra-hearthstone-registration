@@ -28,6 +28,28 @@ class PlayersController < ApplicationController
       end
    end
 
+   post '/players/:slug/edit' do
+      logged_in?
+      @player = Player.find_by_slug(params[:slug])
+      redirect "/players/#{params[:slug]}/edit"
+   end
+
+   get '/players/:slug/edit' do
+      logged_in?
+      @player = Player.find_by_slug(params[:slug])
+      erb :'/players/edit'
+   end
+
+
+   patch '/players/:slug' do
+      logged_in?
+      @player = Player.find_by_slug(params[:slug])
+      redirect '/logout' if @player.id != session[:user_id]
+      
+
+      redirect "/players/#{@player.slug}/decks"
+   end
+
    delete '/players/:slug/delete' do
       logged_in?
       @player = Player.find_by_slug(params[:slug])

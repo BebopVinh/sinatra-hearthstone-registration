@@ -19,6 +19,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do 
     if !!session[:user_id]
+      session.clear
       redirect '/logout'
     else
       erb :login
@@ -39,7 +40,7 @@ class ApplicationController < Sinatra::Base
     redirect '/logout'
   end
   
-  get '/logout'  do
+  get '/logout' do
     session.clear
     redirect '/'
   end

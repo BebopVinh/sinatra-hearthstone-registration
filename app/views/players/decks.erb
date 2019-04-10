@@ -35,8 +35,16 @@
 <% end %>
 
 <br>
+<br>
 <form action="/decks/new" method="post">
    <input type="submit" value="New Deck">
+</form>
+
+
+<br>
+<br>
+<form action="/players/<%=Player.find_by(session[:user_id]).slug%>/edit" method="post">
+   <input type="submit" value="Edit Account">
 </form>
 
 <br>
@@ -45,6 +53,8 @@
    <input type="hidden" id="hidden" value="delete" name="_method">
    <input type="submit" value="Delete Account">
 </form>
+
+
 
 
 

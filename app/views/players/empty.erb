@@ -2,3 +2,16 @@
 
 <br>
 <a href="/decks/index">Return to Decks Index</a>
+
+<br>
+<br>
+<form action="/players/<%=@player.slug%>/edit" method="post">
+   <input type="submit" value="Edit Account">
+</form>
+
+<br>
+<br>
+<form action="/players/<%=@player.slug%>/delete" method="post">
+   <input type="hidden" id="hidden" value="delete" name="_method">
+   <input type="submit" value="Delete Account">
+</form>
