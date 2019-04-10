@@ -1,29 +1,21 @@
-<% if session[:user_id] %>
+<% if !!session[:user_id] %>
     <h2><a href="/players/<%=@player.slug%>/decks">My Decks</a></h2>
+    <br>
+    <form action="/decks/new" method="post">
+        <input type="submit" value="New Deck">
+    </form>
 <% end %>
-
-<!--
-<h3>All decks</h3>
-<% Deck.all.each do |deck| %>
-   <li>
-      <span>
-      <a href="/decks/<%=deck.id%>">
-      <%= deck.name + " #{deck.profession.name} (#{deck.archetype})"%>
-      </a>
-      created by:
-      <a href="/players/<%=deck.creator.slug%>/decks">
-      <%= deck.creator.username %>
- %%>     </a>
-      </span>
-      </li><br>
-<% end %>
-
--->
-
 
 <br>
-<% if session[:user_id] %>
-<form action="/decks/new" method="post">
-   <input type="submit" value="New Deck">
-</form>
+<h3>All decks</h3>
+<% Deck.all.each do |deck| %>
+    <li>
+        <a href="/decks/<%=deck.id%>">
+            <%= "#{deck.name} #{deck.profession.name} (#{deck.archetype})" %>
+        </a>
+        by
+        <a href="/players/<%=deck.creator.slug%>/decks"><%= deck.creator.username %></a>
+    </li><br>
 <% end %>
+
+

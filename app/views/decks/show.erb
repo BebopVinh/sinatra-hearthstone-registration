@@ -1,6 +1,6 @@
 <h1><%= @deck.name + " " + @deck.profession.name %></h1>
 
-<% if !!session[:user_id] %>
+<% if !!session[:user_id] && !(@deck.players.ids.include?(session[:user_id])) %>
    <form action="/decks/<%=@deck.id%>/add" method="post">
       <input type="submit" value="Add to Collection">
    </form>
@@ -23,7 +23,7 @@
 <% unless @deck.players.empty? %>
    <% @deck.players.each do |player| %>
       <li>
-         <a href="/players/<%=player.slug%>">player.username</a>
+         <a href="/players/<%=player.slug%>"><%= player.username %></a>
       </li>
    <% end %>
 <% end %>

@@ -24,14 +24,16 @@ class PlayersController < ApplicationController
          erb :'/players/empty'
       else
          @other_decks = @player.decks - @created_decks
+         erb :'/players/decks'
       end
    end
 
    delete '/players/:slug/delete' do
       logged_in?
       @player = Player.find_by_slug(params[:slug])
+      @created_deck_ids = Deck.all.map {|deck| deck.id if deck.creator_id == @player.id}
+      Deck.destroy(@created_deck_ids.compact)
       Player.destroy(@player.id)
-      redirect '/'
+      redirect '/logout'
    end
-   
 end

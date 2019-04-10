@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
    get '/decks/index' do
       @player = Player.find(session[:user_id]) if !!session[:user_id]
+      @decks = Deck.all
       erb :'/decks/index'
    end
 
@@ -53,7 +54,7 @@ class DecksController < ApplicationController
       logged_in?
       @deck = Deck.find(params[:id])
       @player = Player.find(session[:user_id])
-      @player.decks << @deck
+      @player.decks << @deck unless @deck.players.include?(@player)
       redirect "/decks/#{params[:id]}"
    end
 
