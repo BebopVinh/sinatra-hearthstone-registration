@@ -26,6 +26,18 @@
    </li>
 <% end %>
 
+<br>
+<form action="/decks/new" method="post">
+   <input type="submit" value="New Deck">
+</form>
+
+<br>
+<br>
+<form action="/players/<%=@player.id%>" method="post">
+   <input type="hidden" id="hidden" value="delete" name="_method">
+   <input type="submit" value="Delete Account">
+</form>
+
 
 
 

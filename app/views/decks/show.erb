@@ -9,7 +9,18 @@
 <br>
 <p><b>Created by: </b><%= @deck.creator.username %></p>
 
+<br>
+<p><b>Import Code: </b><%= @deck.code %></p>
+
 
 <% if @deck.creator.id == session[:user_id]%>
-<a href="/decks/<%=@deck.id%>/edit">Edit</a>
+<form action="/decks/<%=@deck.id%>/edit" method="post">
+   <input type="submit" value="Edit Deck">
+</form>
+<br>
+<br>
+<form action="/decks/<%=@deck.id%>/delete" method="post">
+   <input type="hidden" id="hidden" value="delete" name="_method">
+   <input type="submit" value="Delete Deck" color="red">
+</form>
 <% end %>

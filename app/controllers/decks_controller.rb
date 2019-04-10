@@ -1,12 +1,45 @@
 class DecksController < ApplicationController
    get '/decks/index' do
-      logged_in?
       erb :'/decks/index'
+   end
+
+   post '/decks/new' do
+      redirect '/decks/new'
+   end
+
+   get '/decks/new' do
+      logged_in?
+      @player = Player.find(session[:user_id])
+      erb :'/decks/new'
+   end
+
+   post '/decks' do
+      if !params[:deck][:profession_id] ||
+         params[:deck][:profession_id] = params[:deck][:profession_id].to_i
+      else
+         redirect back
+      end
+
+      params[:deck][:creator_id] = params[:deck][:creator_id].to_i
+
+      unless params[:deck].values.include?("")
+         @deck = Deck.new(params[:deck])
+      else
+         redirect back
+      end
+      
+      @deck.code = params[:code] unless params[:code].empty?
+      @deck.save
+      redirect '/decks/index'
    end
 
    get '/decks/:id' do
       @deck = Deck.find(params[:id])
       erb :'/decks/show'
+   end
+
+   post '/decks/:id/edit' do
+      redirect "/decks/#{params[:id]}/edit"
    end
    
    get '/decks/:id/edit' do
@@ -17,14 +50,22 @@ class DecksController < ApplicationController
 
    patch '/decks/:id' do
       @deck = Deck.find(params[:id])
-      binding.pry
-      if params[:deck].values.include?("")
+
+      if params[:deck].values.include?("" || nil)
          redirect back
       else
+         binding.pry
          @deck.update(params[:deck])
          @deck.code = params[:code] unless params[:code].empty?
          @deck.save
          redirect "/players/#{@deck.creator.slug}/decks"
       end
+   end
+
+   delete '/decks/:id/delete' do
+      logged_in?
+      @deck = Deck.find(params[:id])
+      Deck.destroy(params[:id]) if @deck.id == session[:user_id]
+      redirect '/decks/index'
    end
 end

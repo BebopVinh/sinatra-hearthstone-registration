@@ -5,7 +5,6 @@ class PlayersController < ApplicationController
 
    post '/players' do
       player = Player.new(params[:player])
-      binding.pry
       if player.valid?
          player.save
          session[:user_id] = player.id
@@ -17,6 +16,9 @@ class PlayersController < ApplicationController
 
    get '/players/:slug/decks' do
       @player = Player.find_by_slug(params[:slug])
+      unless !!@player
+         redirect '/error'
+      end
       @created_decks = Deck.where(creator_id: @player.id)
       if @player.decks.empty?
          @other_decks = @player.decks

@@ -14,15 +14,19 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <h1>Hearthstone Tournament Registration</h1>
-
-    <div style="float:right">
+    <div class="container">
+      <h1 class="container">Hearthstone Tournament Registration</h1>
       <% if !!session[:user_id] %>
-      <form align="right" name="logout" method="post" action="/logout">
-        <label class="logoutButton">
+      <form name="logout" method="post" action="/logout">
+        <label class="container">
         <input name="logout" type="submit" id="logout" value="Log Out">
         </label>
       </form>
+      <% else %>
+        <span class="container">
+            <b><a href="/login">Login</a></b>
+            <b><a href="/players/new">Register</a></b>
+        </span>
       <% end %>
     </div>
 

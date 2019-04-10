@@ -1,0 +1,29 @@
+<h3>Create a New Deck</h3>
+
+<form action="/decks" method="post">
+   <input type="hidden" name="deck[creator_id]" value="<%= @player.id %>">
+   <label for="deck[name]">Name:
+   <input type="text" name="deck[name]">
+   </label><br>
+   
+   <label for="deck[profession_id]">Class:
+      <select name="deck[profession_id]">
+         <option value="" selected disabled hidden>Choose a Class</option>
+         <% Profession.all.each do |prof| %>
+            <option value="<%=prof.id%>"><%= prof.name %></option>
+         <% end %>
+      </select>
+   </label>
+
+   <br>
+   <label for="deck[name]">Archetype:
+   <input type="text" name="deck[archetype]">
+   </label><br>
+
+   <label for="code">Import Code:
+      <input type="text" name="code">
+   </label>
+
+   <br>
+   <input type="submit" value="Submit">
+</form>
