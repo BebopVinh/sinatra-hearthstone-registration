@@ -7,8 +7,6 @@ class ApplicationController < Sinatra::Base
     set :views, proc { File.join(root, '../views/') }
     enable :sessions
     set :session_secret, HASHKEY
-    # set :session_secret, SecureRandom.hex(64)
-
   end
 
   get "/" do
