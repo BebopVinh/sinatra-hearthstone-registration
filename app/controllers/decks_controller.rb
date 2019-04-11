@@ -17,6 +17,7 @@ class DecksController < ApplicationController
 
    post '/decks' do
       if !(params[:deck][:profession_id]) || params[:deck].values.include?("")
+         flash[:message] = "Missing Deck's Information"
          redirect back
       else
          params[:deck][:profession_id] = params[:deck][:profession_id].to_i
@@ -60,11 +61,8 @@ class DecksController < ApplicationController
 
    patch '/decks/:id' do
       @deck = Deck.find(params[:id])
-
-      # if params[:deck].values.include?("" || nil)
-      #    redirect back
-      # else
       if !(params[:deck][:profession_id]) || params[:deck].values.include?("")
+         flash[:message] = "Missing Deck's Information"
          redirect back
       else
          params[:deck][:profession_id] = params[:deck][:profession_id].to_i

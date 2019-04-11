@@ -7,6 +7,8 @@ class ApplicationController < Sinatra::Base
     set :views, proc { File.join(root, '../views/') }
     enable :sessions
     set :session_secret, HASHKEY
+
+    register Sinatra::Flash
   end
 
   get "/" do
@@ -14,7 +16,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    session.clear 
+    session.clear if !!session[:user_id] 
     erb :login
   end
 
@@ -24,6 +26,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = player.id
       redirect '/decks/index'
     else
+      flash[:message] = "Invalid username/password."
       redirect '/login'
     end
   end
@@ -34,6 +37,7 @@ class ApplicationController < Sinatra::Base
   
   get '/logout' do
     session.clear
+    flash[:message] = "Logged out sucessfully."
     redirect '/'
   end
 
@@ -42,8 +46,8 @@ class ApplicationController < Sinatra::Base
       if !!session[:user_id]
         return
       else
-        session.clear
-        redirect '/'
+        flash[:message] = "Please login or register"
+        redirect back
       end
     end
 

@@ -12,4 +12,3 @@ ActiveRecord::Base.establish_connection(
 # require 'sysrandom/securerandom'
 # require './app/controllers/application_controller'
 require_all 'app'
-require 'pry'
