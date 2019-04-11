@@ -23,7 +23,7 @@
 
     <div class="container">
       <h1 class="container">Hearthstone Tournament Registration</h1>
-      <% if !!session[:user_id] %>
+      <% if session[:user_id] %>
       <form name="logout" method="post" action="/logout">
         <label class="container">
         <input name="logout" type="submit" id="logout" value="Log Out">

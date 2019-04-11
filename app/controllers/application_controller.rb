@@ -7,7 +7,6 @@ class ApplicationController < Sinatra::Base
     set :views, proc { File.join(root, '../views/') }
     enable :sessions
     set :session_secret, HASHKEY
-
     register Sinatra::Flash
   end
 
@@ -24,6 +23,7 @@ class ApplicationController < Sinatra::Base
     player = Player.find_by(username: params[:username])
     if player && player.authenticate(params[:password])
       session[:user_id] = player.id
+      binding.pry
       redirect '/decks/index'
     else
       flash[:message] = "Invalid username/password."
