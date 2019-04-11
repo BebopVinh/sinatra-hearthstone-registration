@@ -4,12 +4,16 @@
 <input type="hidden" id="hidden" value="patch" name="_method">
 <br>
 
-<label for="player[username]">
+<label for="player[username]">Username:
 <input type="text" name="player[username]" value="<%=@player.username%>">
 </label><br>
 
-<label for="player[email]">
+<label for="player[email]">Email:
 <input type="text" name="player[email]" value="<%=@player.email%>">
+</label><br>
+
+<label for="player[email_confirmation]">Confirm Email:
+<input type="text" name="player[email_confirmation]" placeholder="Confirm Email">
 </label><br>
 
 <label for="old_password">Old Password:
@@ -21,7 +25,7 @@
 </label><br>
 
 <label for="player[password]">Confirm Password:
-<input type="password" name="player[password_confirmation]">
+<input type="password" name="player[password_confirmation]" placeholder="Confirm Password">
 </label><br>
 
 <input type="submit" value="Submit">

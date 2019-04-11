@@ -43,7 +43,7 @@
 
 <br>
 <br>
-<form action="/players/<%=Player.find_by(session[:user_id]).slug%>/edit" method="post">
+<form action="/players/<%=@player.slug%>/edit" method="post">
    <input type="submit" value="Edit Account">
 </form>
 

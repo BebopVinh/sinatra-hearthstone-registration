@@ -7,23 +7,17 @@ class ApplicationController < Sinatra::Base
     set :views, proc { File.join(root, '../views/') }
     enable :sessions
     set :session_secret, HASHKEY
+    # set :session_secret, SecureRandom.hex(64)
+
   end
 
   get "/" do
-    if !!session[:user_id]
-      redirect '/decks/index'
-    else
-      erb :home
-    end
+    erb :home
   end
 
-  get '/login' do 
-    if !!session[:user_id]
-      session.clear
-      redirect '/logout'
-    else
-      erb :login
-    end
+  get '/login' do
+    session.clear 
+    erb :login
   end
 
   post '/login' do
@@ -50,7 +44,8 @@ class ApplicationController < Sinatra::Base
       if !!session[:user_id]
         return
       else
-        redirect '/login'
+        session.clear
+        redirect '/'
       end
     end
 
