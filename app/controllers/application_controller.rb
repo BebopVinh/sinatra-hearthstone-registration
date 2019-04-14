@@ -50,8 +50,8 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def current_user
-      user = User.find(session[:user_id])
+    def current_player
+      player = Player.find(session[:user_id])
     end
   end
 
