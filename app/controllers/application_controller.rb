@@ -23,7 +23,6 @@ class ApplicationController < Sinatra::Base
     player = Player.find_by(username: params[:username])
     if player && player.authenticate(params[:password])
       session[:user_id] = player.id
-      binding.pry
       redirect '/decks/index'
     else
       flash[:message] = "Invalid username/password."
@@ -31,9 +30,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/logout' do
-    redirect '/logout'
-  end
+  # post '/logout' do
+  #   redirect '/logout'
+  # end
   
   get '/logout' do
     session.clear
