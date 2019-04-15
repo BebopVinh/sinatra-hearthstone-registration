@@ -45,6 +45,7 @@ The content `<div>` is where all your content goes.
     max-width: 800px;
     margin-bottom: 50px;
     line-height: 1.6em;
+    font-family: "Open Sans", sans-serif;
 }
 
 .header {
@@ -58,12 +59,14 @@ The content `<div>` is where all your content goes.
         margin: 0.2em 0;
         font-size: 3em;
         font-weight: 300;
+        font-family: 'Metal Mania', cursive;
     }
      .header h2 {
         font-weight: 300;
         color: #ccc;
         padding: 0;
         margin-top: 0;
+        font-family: "Anton", sans-serif;
     }
 
 .content-subhead {
