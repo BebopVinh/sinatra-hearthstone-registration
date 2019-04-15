@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :home
+    if !!session[:user_id]
+      erb :home
+    else
+      redirect "/decks/index"
+    end
   end
 
   get '/login' do
