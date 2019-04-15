@@ -28,6 +28,22 @@ class PlayersController < ApplicationController
       end
    end
 
+   post '/players/:slug/edit' do
+      @player = Player.find_by_slug(params[:slug])
+      erb :'/players/edit'
+   end
+
+   patch '/players/:slug' do
+      @player = Player.find_by_slug(params[:slug])
+      if @player && @player.authenticate(params[:old_password])
+         @player.update(params[:player])
+         flash[:message] = "Account Updated!"
+      else
+         flash[:message] = "Please confirm all information"
+      end
+      redirect "/players/#{@player.slug}/decks"
+   end
+
    delete '/players/:slug/delete' do
       logged_in?
       @player = Player.find_by_slug(params[:slug])

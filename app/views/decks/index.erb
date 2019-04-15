@@ -1,8 +1,6 @@
 <% if !!session[:user_id] %>
-    <h2><a href="/players/<%=@player.slug%>/decks">My Decks</a></h2>
-    <br>
-    <form action="/decks/new" method="post">
-        <input type="submit" value="New Deck">
+    <form action="/decks/new" method="get">
+        <input type="button" value="New Deck" class="pure-button pure-button-primary" >
     </form>
 <% end %>
 

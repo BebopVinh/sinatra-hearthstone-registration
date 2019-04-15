@@ -1,32 +1,34 @@
-<h1>Edit your account info</h1>
+<div class="content">
+   <h2 class="content-subhead">Edit Your Account Info</h2>
 
-<form action="/players/<%=@player.slug%>" method="post">
-<input type="hidden" id="hidden" value="patch" name="_method">
-<br>
+   <form class="pure-form pure-form-stacked" action="/players/<%=@player.slug%>" method="post">
+   <input type="hidden" id="hidden" value="patch" name="_method">
+   <br>
 
-<label for="player[username]">Username:
-<input type="text" name="player[username]" value="<%=@player.username%>">
-</label><br>
+   <label for="player[username]">Username:
+   <input type="text" name="player[username]" value="<%=@player.username%>">
+   </label><br>
 
-<label for="player[email]">Email:
-<input type="text" name="player[email]" value="<%=@player.email%>">
-</label><br>
+   <label for="player[email]">Email:
+   <input type="text" name="player[email]" value="<%=@player.email%>">
+   </label><br>
 
-<label for="player[email_confirmation]">Confirm Email:
-<input type="text" name="player[email_confirmation]" placeholder="Confirm Email">
-</label><br>
+   <label for="player[email_confirmation]">Confirm Email:
+   <input type="text" name="player[email_confirmation]" placeholder="Confirm Email">
+   </label><br>
 
-<label for="old_password">Old Password:
-<input type="password" name="old_password" >
-</label><br>
+   <label for="old_password">Old Password:
+   <input type="password" name="old_password" >
+   </label><br>
 
-<label for="player[password]">New Password:
-<input type="password" name="player[password]">
-</label><br>
+   <label for="player[password]">New Password:
+   <input type="password" name="player[password]">
+   </label><br>
 
-<label for="player[password]">Confirm Password:
-<input type="password" name="player[password_confirmation]" placeholder="Confirm Password">
-</label><br>
+   <label for="player[password]">Confirm Password:
+   <input type="password" name="player[password_confirmation]" placeholder="Confirm Password">
+   </label><br>
 
-<input type="submit" value="Submit">
-</form>
+   <input type="submit" value="Submit">
+   </form>
+</div>
