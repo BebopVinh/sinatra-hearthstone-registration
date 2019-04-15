@@ -1,6 +1,6 @@
 <h1>Edit <%= @deck.name + " " + @deck.profession.name %></h1>
 
-<form action="/decks/<%=@deck.id%>" method="post">
+<form action="/decks/<%=@deck.id%>" method="post" class="pure-form pure-form-stacked">
    <input type="hidden" id="hidden" value="patch" name="_method">
 
    <label for="deck[name]">Name:

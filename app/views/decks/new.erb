@@ -1,6 +1,6 @@
 <h3 class="content-subhead">Create a New Deck</h3>
 
-<form action="/decks" method="post">
+<form action="/decks" method="post" class="pure-form pure-form-stacked">
    <input type="hidden" name="deck[creator_id]" value="<%= @player.id %>">
    <label for="deck[name]">Name:
    <input type="text" name="deck[name]">
