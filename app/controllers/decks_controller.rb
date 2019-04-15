@@ -5,10 +5,6 @@ class DecksController < ApplicationController
       erb :'/decks/index'
    end
 
-   post '/decks/new' do
-      redirect '/decks/new'
-   end
-
    get '/decks/new' do
       logged_in?
       @player = Player.find(session[:user_id])
