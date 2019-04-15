@@ -45,6 +45,10 @@
             <li class="pure-menu-item">
               <a href="/" class="pure-menu-link">Home</a>
             </li>
+
+            <li class="pure-menu-item">
+              <a href="/decks/index" class="pure-menu-link">Decks Index</a>
+            </li>
             <% if !!session[:user_id] %>
             <li class="pure-menu-item">
               <a href="/players/<%=current_player.slug%>/decks" class="pure-menu-link">My Decks</a>
