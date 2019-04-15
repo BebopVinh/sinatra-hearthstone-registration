@@ -21,5 +21,8 @@ group :test do
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+end
+
+group :development do
   gem 'sqlite3', '~>1.3.6'
 end
