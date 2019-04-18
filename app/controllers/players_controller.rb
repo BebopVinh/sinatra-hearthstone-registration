@@ -28,9 +28,14 @@ class PlayersController < ApplicationController
       end
    end
 
-   post '/players/:slug/edit' do
+   get '/players/:slug/edit' do
+      logged_in?
       @player = Player.find_by_slug(params[:slug])
-      erb :'/players/edit'
+      if session[:user_id] == @player.id
+         erb :'/players/edit'
+      else
+         redirect '/decks/index'
+      end
    end
 
    patch '/players/:slug' do

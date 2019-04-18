@@ -28,6 +28,7 @@ class DecksController < ApplicationController
       @deck.save
       @player = Player.find(session[:user_id])
       @player.decks << @deck
+      #@deck.player = @player
       redirect '/decks/index'
    end
 
